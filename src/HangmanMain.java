@@ -1,14 +1,10 @@
-// Class HangmanMain is the driver program for the Hangman program.  It reads a
-// dictionary of words to be used during the game and then plays a game with
-// the user.  This is a cheating version of hangman that delays picking a word
-// to keep its options open.  You can change the setting for SHOW_COUNT to see
-// how many options are still left on each turn.
-
 import java.util.*;
 import java.io.*;
 
 /**
- * Main module for EvilHangman. Handles game state, file processing and user interaction.
+ * Main module for DubiousHangman. Handles game state, file processing and user interaction. Reads a dictionary of words
+ * that is fed into HangmanManager/DubiousHangmanManager to play a game. This version of hangman cheats by contracting
+ * the decision space of given words based on each of the player's guesses.
  */
 public class HangmanMain  {
     /**
@@ -16,7 +12,7 @@ public class HangmanMain  {
      */
     public static final String DICTIONARY_FILE = "dictionary";
     /**
-     * Whether to show count of current words considered by EvilHangman/
+     * Whether to show count of current words considered by the game
      */
     public static final boolean SHOW_COUNT = false;
 
