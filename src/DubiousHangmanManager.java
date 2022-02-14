@@ -31,13 +31,35 @@ public class DubiousHangmanManager extends HangmanManager {
             for (String word : words()) {
                 tempWord = word;
                 if (!tempWord.contains(guess + "")) {
-                    words().clear();
-                    words().add(tempWord);
+                    this.words.clear();
+                    this.words.add(tempWord);
                     break;
                 }
             }
         }
         return super.record(guess);
     }
+
+    /**
+     * Restricted 'Getter' for words
+     *
+     * @return un-modifiable version of the current set of words considered by the game
+     */
+    @Override
+    public Set<String> words() {
+        return Collections.unmodifiableSet(this.words);
+    }
+
+    /**
+     * Restricted 'Getter' for guessed letters.
+     *
+     * @return un-modifiable version of the guessed letters by the player
+     */
+    @Override
+    public Set<Character> guesses() {
+        return Collections.unmodifiableSet(this.letters);
+    }
+
+
 
 }

@@ -14,7 +14,7 @@ public class HangmanMain  {
     /**
      * Whether to show count of current words considered by the game
      */
-    public static final boolean SHOW_COUNT = false;
+    public static final boolean SHOW_COUNT = true;
 
     /**
      * Creates EvilHangman and starts game.

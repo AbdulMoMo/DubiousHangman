@@ -13,11 +13,11 @@ public class HangmanManager {
     /**
      * Current set of words considered.
      */
-    private TreeSet<String> words;
+    protected TreeSet<String> words;
     /**
      * Guessed letters by user.
      */
-    private TreeSet<Character> letters;
+    protected TreeSet<Character> letters;
     /**
      * Current pattern for largest word list.
      */
@@ -77,7 +77,7 @@ public class HangmanManager {
      *
      * @return guessed letters
      */
-    public SortedSet<Character> guesses() {
+    public Set<Character> guesses() {
         return this.letters;
     }
 
@@ -153,14 +153,16 @@ public class HangmanManager {
      */
     private void findLargestList () {
         int size = 0;
+        TreeSet<String> auxWordList = new TreeSet<>();
         for (String variant : allPatterns.keySet()) {
             TreeSet<String> tempWordList = allPatterns.get(variant);
             if(tempWordList.size() > size) {
                 size = tempWordList.size();
                 this.pattern = variant;
-                this.words = tempWordList;
+                auxWordList = tempWordList;
             }
         }
+        this.words = auxWordList;
         allPatterns.clear();
     }
 
