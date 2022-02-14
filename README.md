@@ -46,11 +46,13 @@ Internally, I mainly leveraged TreeSets and TreeMaps to represents guessed chara
 allow for a simple natural ordering of the input elements short of a comparator. To streamline shrinking the decision space, all trimming is done iteratively. 
 That being said, I also attempted to compartmentalize methods, and their helpers, to distinct functions in order to maintain readability.
 
-One important point I've walked away with after this implementation is the importance of encapsulation. Currently HangmanMain calls on words() and guesses() to
+One important point I've walked away with after this implementation is the importance of encapsulation. Currently, HangmanMain calls on words() and guesses() to
 get references to the objects that store the current words considered and the guessed characters respectively. Due to that implementation choice, HangmanMain would
 have the ability to mutate these data structures and interfere with the state of the game. For simplicity's sake, and to streamline a "Proof of Concept" for
 a more dubious Hangman I have kept the methods publicly accessible. Though moving forward, it is important to consider programs should be designed around 
 modularity and mobility when it comes to locking down its composite pieces. 
+
+New note: With a recent push as of 2/14, I have restricted access to words and letters by HangmainMain.
 
 ## Closing Thoughts
 All the same, I had a fantastic time working on this small program! I believe it has also afforded me some great lessons to bring to my next small project...
