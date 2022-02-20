@@ -1,20 +1,24 @@
+package main;
+
+import main.DubiousHangmanManager;
+
 import java.util.*;
 import java.io.*;
 
 /**
  * Main module for DubiousHangman. Handles game state, file processing and user interaction. Reads a dictionary of words
- * that is fed into HangmanManager/DubiousHangmanManager to play a game. This version of hangman cheats by contracting
+ * that is fed into main.HangmanManager/main.DubiousHangmanManager to play a game. This version of hangman cheats by contracting
  * the decision space of given words based on each of the player's guesses.
  */
 public class HangmanMain  {
     /**
      * Reference to relative dictionary file location.
      */
-    public static final String DICTIONARY_FILE = "dictionary";
+    public static final String DICTIONARY_FILE_PATH = "dictionary";
     /**
      * Whether to show count of current words considered by the game
      */
-    public static final boolean SHOW_COUNT = true;
+    public static final boolean SHOW_WORD_COUNT = true;
 
     /**
      * Creates EvilHangman and starts game.
@@ -26,7 +30,7 @@ public class HangmanMain  {
         System.out.println("Welcome to a totally normal game of Hangman.");
         System.out.println();
 
-        Scanner input = new Scanner(new File(DICTIONARY_FILE));
+        Scanner input = new Scanner(new File(DICTIONARY_FILE_PATH));
         List<String> dictionary = new ArrayList<>();
         while (input.hasNext())
             dictionary.add(input.next().toLowerCase());
@@ -56,16 +60,16 @@ public class HangmanMain  {
      */
     public static void playGame(Scanner console, HangmanManager hangman) {
         while (hangman.guessesLeft() > 0 && hangman.pattern().contains("-")) {
-            System.out.println("guesses : " + hangman.guessesLeft());
-            if (SHOW_COUNT) {
-                System.out.println("words   : " + hangman.words().size());
+            System.out.println("guesses left : " + hangman.guessesLeft());
+            if (SHOW_WORD_COUNT) {
+                System.out.println("possible words  : " + hangman.words().size());
             }
             System.out.println("guessed : " + hangman.guesses());
             System.out.println("current : " + hangman.pattern());
-            System.out.print("Your guess? ");
+            System.out.print("Your next guess? ");
             char ch = console.next().toLowerCase().charAt(0);
             if (hangman.guesses().contains(ch)) {
-                System.out.println("You already guessed that");
+                System.out.println("You already guessed that silly.");
             } else {
                 int count = hangman.record(ch);
                 if (count == 0) {

@@ -1,13 +1,15 @@
+package main;
+
 import java.util.*;
 
 /**
- * Subclass of HangmanManager that makes the game more evil by forcing failure with one guess left.
+ * Subclass of main.HangmanManager that makes the game more evil by forcing failure with one guess left.
  */
 public class DubiousHangmanManager extends HangmanManager {
 
 
     /**
-     * Creates new DubiousHangmanManager and calls parent constructor.
+     * Creates new main.DubiousHangmanManager and calls parent constructor.
      *
      * @param dictionary of words to guess from
      * @param length of word to guess

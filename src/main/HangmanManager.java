@@ -1,3 +1,5 @@
+package main;
+
 import java.util.*;
 
 /**
@@ -28,7 +30,7 @@ public class HangmanManager {
     private TreeMap<String, TreeSet<String>> allPatterns;
 
     /**
-     * Creates new HangmanManager and initializes class variables.
+     * Creates new main.HangmanManager and initializes class variables.
      *
      * @param dictionary of words to guess from
      * @param length of word to guess
@@ -38,7 +40,7 @@ public class HangmanManager {
      * proposed word length is less than 1
      */
     public HangmanManager(Collection<String> dictionary, int length, int guesses) {
-        if (length < 1 || guesses < 0) {
+        if (length < 1 || guesses < 1) {
             throw new IllegalArgumentException();
         }
         this.letters = new TreeSet<>();
