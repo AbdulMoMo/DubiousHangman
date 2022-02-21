@@ -100,6 +100,66 @@ public class HangmanManagerTest {
                 () -> this.hangman.record('a'));
     }
 
+
+    /**
+     * Checks if sample run of the game has user win with good
+     * @throws FileNotFoundException if dictionary file does not exist
+     */
+    @Test
+    public void testGamewithFourLetterWordandSevenWrongGuessesUserWinswithGood() throws FileNotFoundException {
+        setUp("testDictionary", 4, 7);
+        String target = "good";
+        this.hangman.record('e');
+        this.hangman.record('o');
+        this.hangman.record('t');
+        this.hangman.record('f');
+        this.hangman.record('c');
+        this.hangman.record('n');
+        this.hangman.record('d');
+        this.hangman.record('h');
+        this.hangman.record('g');
+        assertEquals(target, this.hangman.words().iterator().next());
+    }
+
+    /**
+     * Checks if sample run of the game has user win with good
+     * @throws FileNotFoundException if dictionary file does not exist
+     */
+    @Test
+    public void altTestGamewithFourLetterWordandSevenWrongGuessesUserWinswithGood() throws FileNotFoundException {
+        setUp("testDictionary", 4, 7);
+        String target = "good";
+        this.hangman.record('l');
+        this.hangman.record('h');
+        this.hangman.record('e');
+        this.hangman.record('o');
+        this.hangman.record('f');
+        this.hangman.record('c');
+        this.hangman.record('g');
+        this.hangman.record('d');
+        assertEquals(target, this.hangman.words().iterator().next());
+    }
+
+    /**
+     * Checks if sample run of the game has user win with ibex
+     * @throws FileNotFoundException if dictionary file does not exist
+     */
+    @Test
+    public void testGamewithFourLetterWordandSevenWrongGuessesUserWinswithIbex() throws FileNotFoundException {
+        setUp("testDictionary", 4, 8);
+        String target = "ibex";
+        this.hangman.record('u');
+        this.hangman.record('t');
+        this.hangman.record('o');
+        this.hangman.record('e');
+        this.hangman.record('w');
+        this.hangman.record('x');
+        this.hangman.record('r');
+        this.hangman.record('b');
+        this.hangman.record('i');
+        assertEquals(target, this.hangman.words().iterator().next());
+    }
+
     /**
      * Checks if sample run of the game fails user with 'clucks' with these input letters
      * @throws FileNotFoundException if dictionary file does not exist

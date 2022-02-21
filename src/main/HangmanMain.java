@@ -1,7 +1,5 @@
 package main;
 
-import main.DubiousHangmanManager;
-
 import java.util.*;
 import java.io.*;
 
@@ -35,20 +33,43 @@ public class HangmanMain  {
         while (input.hasNext())
             dictionary.add(input.next().toLowerCase());
 
-        Scanner console = new Scanner(System.in);
-        System.out.print("What length word do you want to use? ");
-        int length = console.nextInt();
-        System.out.print("How many wrong answers allowed? ");
-        int max = console.nextInt();
-        System.out.println();
+        boolean playAgain = true;
 
-        List<String> dictionary2 = Collections.unmodifiableList(dictionary);
-        HangmanManager hangman = new DubiousHangmanManager(dictionary2, length, max);
-        if (hangman.words().isEmpty()) {
-            System.out.println("No words of that length in the dictionary.");
-        } else {
-            playGame(console, hangman);
-            showResults(hangman);
+        while (playAgain) {
+            Scanner console = new Scanner(System.in);
+            System.out.print("What length word do you want to use? ");
+            int length = console.nextInt();
+            System.out.print("How many wrong answers allowed? ");
+            int max = console.nextInt();
+            System.out.println();
+
+            List<String> dictionary2 = Collections.unmodifiableList(dictionary);
+            HangmanManager hangman = new DubiousHangmanManager(dictionary2, length, max);
+
+            if (hangman.words().isEmpty()) {
+                System.out.println("No words of that length in the dictionary. Would you like to try a new length?(Y/N)");
+            } else {
+                playGame(console, hangman);
+                showResults(hangman);
+                System.out.println("Would you like to play again? (Y/N)");
+            }
+
+            String userChoice = console.next();
+            int patience = 0;
+
+            while (!userChoice.equalsIgnoreCase("y") && !userChoice.equalsIgnoreCase("n") && patience < 5) {
+                System.out.println("That is not a valid input. Please answer with 'Y' or 'N'.");
+                userChoice = console.next();
+                patience++;
+                if (patience == 5) {
+                    System.out.println("That's it I'm done with you.");
+                    playAgain = false;
+                }
+            }
+
+            if (userChoice.equalsIgnoreCase("n")) {
+                playAgain = false;
+            }
         }
     }
 
@@ -98,5 +119,6 @@ public class HangmanMain  {
         } else {
             System.out.println("Sorry, you lose");
         }
+        System.out.println();
     }
 }
