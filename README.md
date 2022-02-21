@@ -42,13 +42,13 @@ will look for a word in the available list that does not contain the player's la
 add only the first word it found that does not match the player's guess. That way, when the game checks if the letter was a valid guess, the player automatically
 fails as it's considered a wrong guess. 
 
-###Set Types
+### Set Types
 
 Internally, I mainly leveraged TreeSets and TreeMaps to represents guessed characters, the pattern families and the current words considered. These variations
 allow for a simple natural ordering of the input elements short of a comparator. To streamline shrinking the decision space, all trimming is done iteratively. 
 That being said, I also attempted to compartmentalize methods, and their helpers, to distinct functions in order to maintain readability.
 
-###Encapsulation
+### Encapsulation
 
 One important point I've walked away with after this implementation is the importance of encapsulation. Currently, main.HangmanMain calls on words() and guesses() to
 get references to the objects that store the current words considered and the guessed characters respectively. Due to that implementation choice, main.HangmanMain would
@@ -56,7 +56,7 @@ have the ability to mutate these data structures and interfere with the state of
 Alternatively, DubiousHangmanManager only returns immutable versions of these objects to avoid the client program, HangmanMain, from breaking the game state. HangmanMain
 uses the 'Dubious' variant for that reason (and to frustrate the player). 
 
-###Testing
+### Testing
 
 Another insightful aspect of the development process was implementing unit tests for both HangmanManager and DubiousHangmanManager. Creating these tests allowed me 
 to better understand when I wanted to throw an exception and why that would be necessary. I also was able to more quickly validate that the current implementation 
